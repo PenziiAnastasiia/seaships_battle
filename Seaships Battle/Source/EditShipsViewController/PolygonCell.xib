@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PolygonCell" customModule="Seaships_Battle" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="138" height="139"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3W-kI-Wau">
+                    <rect key="frame" x="0.0" y="0.0" width="138" height="139"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="touchWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vg1-CR-QB9"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="x3W-kI-Wau" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XUr-y4-l6n"/>
+                <constraint firstAttribute="bottom" secondItem="x3W-kI-Wau" secondAttribute="bottom" id="d2Q-Th-Q5i"/>
+                <constraint firstItem="x3W-kI-Wau" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="j6A-NH-uQZ"/>
+                <constraint firstAttribute="trailing" secondItem="x3W-kI-Wau" secondAttribute="trailing" id="zSj-Q9-fsy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="button" destination="x3W-kI-Wau" id="xpj-TW-Esu"/>
+            </connections>
+            <point key="canvasLocation" x="-35.114503816793892" y="-471.47887323943667"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
