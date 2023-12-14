@@ -1,3 +1,10 @@
+//
+//  BoardGenerator.swift
+//  Seaships Battle
+//
+//  Created by Анастасія Пензій on 11.12.2023.
+//
+
 import Foundation
 
 struct BoardGenerator {

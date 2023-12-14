@@ -1,8 +1,8 @@
 //
-//  NSAlert+Extension.swift
+//  Alert+Extension.swift
 //  Seaships Battle
 //
-//  Created by Анастасія Пензій on 21.05.2023.
+//  Created by Анастасія Пензій on 11.12.2023.
 //
 
 import UIKit

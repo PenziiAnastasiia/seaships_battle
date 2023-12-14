@@ -17,7 +17,7 @@
 		1B5FEBEF2B266F5600BBB1C3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5FEBED2B266F5600BBB1C3 /* GameViewController.swift */; };
 		1B5FEBF02B266F5600BBB1C3 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBEE2B266F5600BBB1C3 /* GameViewController.xib */; };
 		1B7A91362B277EFB004C2EA5 /* EditShipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A91352B277EFB004C2EA5 /* EditShipsView.swift */; };
-		1B7A91382B2786AC004C2EA5 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A91372B2786AC004C2EA5 /* Colors.xcassets */; };
+		1B7A91382B2786AC004C2EA5 /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A91372B2786AC004C2EA5 /* Colours.xcassets */; };
 		1B7A913B2B278A6C004C2EA5 /* PolygonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A91392B278A6C004C2EA5 /* PolygonCell.swift */; };
 		1B7A913E2B278B28004C2EA5 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A913D2B278B28004C2EA5 /* CellModel.swift */; };
 		1B7A91402B278DD7004C2EA5 /* ShipsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A913F2B278DD7004C2EA5 /* ShipsBuilder.swift */; };
@@ -44,7 +44,7 @@
 		1B5FEBED2B266F5600BBB1C3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1B5FEBEE2B266F5600BBB1C3 /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		1B7A91352B277EFB004C2EA5 /* EditShipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShipsView.swift; sourceTree = "<group>"; };
-		1B7A91372B2786AC004C2EA5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		1B7A91372B2786AC004C2EA5 /* Colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colours.xcassets; sourceTree = "<group>"; };
 		1B7A91392B278A6C004C2EA5 /* PolygonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonCell.swift; sourceTree = "<group>"; };
 		1B7A913D2B278B28004C2EA5 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
 		1B7A913F2B278DD7004C2EA5 /* ShipsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipsBuilder.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				1B5FEBD92B264A1C00BBB1C3 /* LaunchScreen.storyboard */,
 				1B5FEBDB2B264A1C00BBB1C3 /* AppDelegate.swift */,
 				1B5FEBDC2B264A1C00BBB1C3 /* Info.plist */,
-				1B7A91372B2786AC004C2EA5 /* Colors.xcassets */,
+				1B7A91372B2786AC004C2EA5 /* Colours.xcassets */,
 			);
 			path = "Seaships Battle";
 			sourceTree = "<group>";
@@ -217,7 +217,7 @@
 				1B5FEBEB2B264D2200BBB1C3 /* EditShipsViewController.xib in Resources */,
 				1B5FEBE12B264A1C00BBB1C3 /* Assets.xcassets in Resources */,
 				1B5FEBE22B264A1C00BBB1C3 /* LaunchScreen.storyboard in Resources */,
-				1B7A91382B2786AC004C2EA5 /* Colors.xcassets in Resources */,
+				1B7A91382B2786AC004C2EA5 /* Colours.xcassets in Resources */,
 				1B5FEBE52B264A1C00BBB1C3 /* MainViewController.xib in Resources */,
 				1B5FEBF02B266F5600BBB1C3 /* GameViewController.xib in Resources */,
 			);
