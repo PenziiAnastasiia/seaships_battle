@@ -25,6 +25,10 @@ class EditShipsViewController: UIViewController {
         self.generateItems()
         self.fillView()
     }
+    
+    @IBAction func pressBack(_ sender: UIButton) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 
     @IBAction func pressClear(_ sender: UIButton) {
         self.lockedPoints = []
@@ -37,9 +41,19 @@ class EditShipsViewController: UIViewController {
     @IBAction func pressPlay(_ sender: UIButton) {
         let myShips = self.createMyShips()
         if self.check(ships: myShips) {
-            let enemyShips = self.shipsBuilder.createShips()
-            let controller = GameViewController(myShips: myShips, enemyShips: enemyShips)
-            self.navigationController?.pushViewController(controller, animated: true)
+            let alert = UIAlertController(title: "З ким хочете зіграти?", message: nil, preferredStyle: .alert)
+            
+            let playAgainstComputerAction = UIAlertAction(title: "Проти Комп'ютера", style: .default) { _ in
+                let enemyShips = self.shipsBuilder.createShips()
+                let controller = GameViewController(myShips: myShips, enemyShips: enemyShips)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+            
+            let playOnlineAction = UIAlertAction(title: "Проти Людини Онлайн", style: .default)
+            
+            alert.addAction(playAgainstComputerAction)
+            alert.addAction(playOnlineAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
 

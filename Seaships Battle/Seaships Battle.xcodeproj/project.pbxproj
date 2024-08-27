@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B36D3742C773C7100BD78E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B36D3732C773C7000BD78E9 /* GoogleService-Info.plist */; };
+		1B36D3772C773D0F00BD78E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1B36D3762C773D0F00BD78E9 /* FirebaseAnalytics */; };
+		1B36D37A2C77476B00BD78E9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1B36D3792C77476B00BD78E9 /* FirebaseAuth */; };
+		1B36D37D2C7749E500BD78E9 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B36D37C2C7749E500BD78E9 /* SignInViewController.xib */; };
+		1B36D37F2C774A1100BD78E9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36D37E2C774A1100BD78E9 /* SignInViewController.swift */; };
 		1B5FEBE12B264A1C00BBB1C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBD82B264A1C00BBB1C3 /* Assets.xcassets */; };
 		1B5FEBE22B264A1C00BBB1C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBD92B264A1C00BBB1C3 /* LaunchScreen.storyboard */; };
 		1B5FEBE32B264A1C00BBB1C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5FEBDB2B264A1C00BBB1C3 /* AppDelegate.swift */; };
@@ -16,6 +21,9 @@
 		1B5FEBEB2B264D2200BBB1C3 /* EditShipsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBE92B264D2200BBB1C3 /* EditShipsViewController.xib */; };
 		1B5FEBEF2B266F5600BBB1C3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5FEBED2B266F5600BBB1C3 /* GameViewController.swift */; };
 		1B5FEBF02B266F5600BBB1C3 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBEE2B266F5600BBB1C3 /* GameViewController.xib */; };
+		1B69DB9E2C7A142700BC99AA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69DB9B2C7A142700BC99AA /* SignUpViewController.swift */; };
+		1B69DB9F2C7A142700BC99AA /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B69DB9C2C7A142700BC99AA /* SignUpViewController.xib */; };
+		1B69DBA42C7B311700BC99AA /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69DBA32C7B311700BC99AA /* ErrorService.swift */; };
 		1B7A91362B277EFB004C2EA5 /* EditShipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A91352B277EFB004C2EA5 /* EditShipsView.swift */; };
 		1B7A91382B2786AC004C2EA5 /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A91372B2786AC004C2EA5 /* Colours.xcassets */; };
 		1B7A913B2B278A6C004C2EA5 /* PolygonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A91392B278A6C004C2EA5 /* PolygonCell.swift */; };
@@ -32,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B36D3732C773C7000BD78E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1B36D37C2C7749E500BD78E9 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		1B36D37E2C774A1100BD78E9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1B5FEBC02B26497E00BBB1C3 /* Seaships Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Seaships Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5FEBD82B264A1C00BBB1C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5FEBDA2B264A1C00BBB1C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +54,9 @@
 		1B5FEBE92B264D2200BBB1C3 /* EditShipsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditShipsViewController.xib; sourceTree = "<group>"; };
 		1B5FEBED2B266F5600BBB1C3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1B5FEBEE2B266F5600BBB1C3 /* GameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		1B69DB9B2C7A142700BC99AA /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1B69DB9C2C7A142700BC99AA /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		1B69DBA32C7B311700BC99AA /* ErrorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorService.swift; sourceTree = "<group>"; };
 		1B7A91352B277EFB004C2EA5 /* EditShipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShipsView.swift; sourceTree = "<group>"; };
 		1B7A91372B2786AC004C2EA5 /* Colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colours.xcassets; sourceTree = "<group>"; };
 		1B7A91392B278A6C004C2EA5 /* PolygonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonCell.swift; sourceTree = "<group>"; };
@@ -63,18 +77,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B36D3772C773D0F00BD78E9 /* FirebaseAnalytics in Frameworks */,
+				1B36D37A2C77476B00BD78E9 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B36D3782C77476B00BD78E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B36D37B2C7748E400BD78E9 /* SignViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1B36D37C2C7749E500BD78E9 /* SignInViewController.xib */,
+				1B36D37E2C774A1100BD78E9 /* SignInViewController.swift */,
+			);
+			path = SignViewController;
+			sourceTree = "<group>";
+		};
 		1B5FEBB72B26497E00BBB1C3 = {
 			isa = PBXGroup;
 			children = (
 				1B5FEBD72B264A1C00BBB1C3 /* Seaships Battle */,
 				1B5FEBDD2B264A1C00BBB1C3 /* Source */,
 				1B5FEBC12B26497E00BBB1C3 /* Products */,
+				1B36D3782C77476B00BD78E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +125,7 @@
 				1B5FEBD82B264A1C00BBB1C3 /* Assets.xcassets */,
 				1B5FEBD92B264A1C00BBB1C3 /* LaunchScreen.storyboard */,
 				1B5FEBDB2B264A1C00BBB1C3 /* AppDelegate.swift */,
+				1B36D3732C773C7000BD78E9 /* GoogleService-Info.plist */,
 				1B5FEBDC2B264A1C00BBB1C3 /* Info.plist */,
 				1B7A91372B2786AC004C2EA5 /* Colours.xcassets */,
 			);
@@ -101,9 +135,12 @@
 		1B5FEBDD2B264A1C00BBB1C3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1B69DBA22C7B30FB00BC99AA /* Services */,
 				1B7A91432B278E5C004C2EA5 /* Libs */,
 				1B5FEBEC2B266F2C00BBB1C3 /* GameViewController */,
 				1B5FEBE72B264CE500BBB1C3 /* EditShipsViewController */,
+				1B36D37B2C7748E400BD78E9 /* SignViewController */,
+				1B69DB9D2C7A142700BC99AA /* SignUpViewController */,
 				1B5FEBDE2B264A1C00BBB1C3 /* MainViewController */,
 			);
 			path = Source;
@@ -144,6 +181,23 @@
 			path = GameViewController;
 			sourceTree = "<group>";
 		};
+		1B69DB9D2C7A142700BC99AA /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1B69DB9C2C7A142700BC99AA /* SignUpViewController.xib */,
+				1B69DB9B2C7A142700BC99AA /* SignUpViewController.swift */,
+			);
+			path = SignUpViewController;
+			sourceTree = "<group>";
+		};
+		1B69DBA22C7B30FB00BC99AA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1B69DBA32C7B311700BC99AA /* ErrorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1B7A91432B278E5C004C2EA5 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +225,10 @@
 			dependencies = (
 			);
 			name = "Seaships Battle";
+			packageProductDependencies = (
+				1B36D3762C773D0F00BD78E9 /* FirebaseAnalytics */,
+				1B36D3792C77476B00BD78E9 /* FirebaseAuth */,
+			);
 			productName = "Seaships Battle";
 			productReference = 1B5FEBC02B26497E00BBB1C3 /* Seaships Battle.app */;
 			productType = "com.apple.product-type.application";
@@ -199,6 +257,9 @@
 				Base,
 			);
 			mainGroup = 1B5FEBB72B26497E00BBB1C3;
+			packageReferences = (
+				1B36D3752C773D0F00BD78E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1B5FEBC12B26497E00BBB1C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -214,11 +275,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9CC77A2B2A161C00BF90B3 /* PolygonCell.xib in Resources */,
+				1B36D3742C773C7100BD78E9 /* GoogleService-Info.plist in Resources */,
 				1B5FEBEB2B264D2200BBB1C3 /* EditShipsViewController.xib in Resources */,
 				1B5FEBE12B264A1C00BBB1C3 /* Assets.xcassets in Resources */,
 				1B5FEBE22B264A1C00BBB1C3 /* LaunchScreen.storyboard in Resources */,
 				1B7A91382B2786AC004C2EA5 /* Colours.xcassets in Resources */,
+				1B69DB9F2C7A142700BC99AA /* SignUpViewController.xib in Resources */,
 				1B5FEBE52B264A1C00BBB1C3 /* MainViewController.xib in Resources */,
+				1B36D37D2C7749E500BD78E9 /* SignInViewController.xib in Resources */,
 				1B5FEBF02B266F5600BBB1C3 /* GameViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,13 +297,16 @@
 				1B5FEBEF2B266F5600BBB1C3 /* GameViewController.swift in Sources */,
 				1B7A91422B278DFE004C2EA5 /* BoardGenerator.swift in Sources */,
 				1B5FEBEA2B264D2200BBB1C3 /* EditShipsViewController.swift in Sources */,
+				1B36D37F2C774A1100BD78E9 /* SignInViewController.swift in Sources */,
 				1B7A913B2B278A6C004C2EA5 /* PolygonCell.swift in Sources */,
 				1B9CC77C2B2A370900BF90B3 /* GameView.swift in Sources */,
 				1B7A91402B278DD7004C2EA5 /* ShipsBuilder.swift in Sources */,
 				1B7A914F2B278E5C004C2EA5 /* Array+Extension.swift in Sources */,
+				1B69DBA42C7B311700BC99AA /* ErrorService.swift in Sources */,
 				1B7A914B2B278E5C004C2EA5 /* Optional+Extension.swift in Sources */,
 				1B5FEBE32B264A1C00BBB1C3 /* AppDelegate.swift in Sources */,
 				1B7A913E2B278B28004C2EA5 /* CellModel.swift in Sources */,
+				1B69DB9E2C7A142700BC99AA /* SignUpViewController.swift in Sources */,
 				1B7A91362B277EFB004C2EA5 /* EditShipsView.swift in Sources */,
 				1B7A91512B279650004C2EA5 /* SafeZoneBuilder.swift in Sources */,
 				1B7A914E2B278E5C004C2EA5 /* IndexPath+Extension.swift in Sources */,
@@ -405,6 +472,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -435,6 +503,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -463,6 +532,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B36D3752C773D0F00BD78E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B36D3762C773D0F00BD78E9 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B36D3752C773D0F00BD78E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1B36D3792C77476B00BD78E9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B36D3752C773D0F00BD78E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1B5FEBB82B26497E00BBB1C3 /* Project object */;
 }

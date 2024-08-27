@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -25,12 +25,32 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WuW-jM-kEX">
                             <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="372"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кораблі" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8V-sh-nZg">
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ndc-Pz-aOG">
                                     <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="48"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                                    <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuX-0U-jIN">
+                                            <rect key="frame" x="0.0" y="4" width="106.66666666666667" height="40.333333333333336"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="Back"/>
+                                            <connections>
+                                                <action selector="pressBack:" destination="-1" eventType="touchUpInside" id="LtA-QB-cLl"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кораблі" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q8V-sh-nZg">
+                                            <rect key="frame" x="106.66666666666664" y="0.0" width="146.33333333333337" height="48"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                            <color key="textColor" systemColor="scrollViewTexturedBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uf-Nb-Ng1">
+                                            <rect key="frame" x="252.99999999999997" y="0.0" width="106.66666666666666" height="48"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Q8V-sh-nZg" firstAttribute="centerX" secondItem="Ndc-Pz-aOG" secondAttribute="centerX" id="shA-1b-hgU"/>
+                                    </constraints>
+                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XHq-Ki-wgj">
                                     <rect key="frame" x="0.0" y="56" width="359.66666666666669" height="30"/>
                                     <subviews>
@@ -230,6 +250,8 @@
                                 <constraint firstItem="XHq-Ki-wgj" firstAttribute="height" secondItem="WuW-jM-kEX" secondAttribute="height" multiplier="30:372" id="28I-Nf-Cpw"/>
                                 <constraint firstItem="EK1-2l-NLh" firstAttribute="height" secondItem="WuW-jM-kEX" secondAttribute="height" multiplier="30:372" id="GKa-F5-NtR"/>
                                 <constraint firstItem="6KN-5Q-Xri" firstAttribute="height" secondItem="WuW-jM-kEX" secondAttribute="height" multiplier="30:372" id="SAg-9s-O5z"/>
+                                <constraint firstItem="XHq-Ki-wgj" firstAttribute="top" secondItem="Ndc-Pz-aOG" secondAttribute="bottom" constant="8" symbolic="YES" id="SEF-lk-Rep"/>
+                                <constraint firstItem="Ndc-Pz-aOG" firstAttribute="top" secondItem="WuW-jM-kEX" secondAttribute="top" id="aDS-FJ-b5D"/>
                                 <constraint firstItem="wzq-4j-Dxc" firstAttribute="height" secondItem="WuW-jM-kEX" secondAttribute="height" multiplier="30:372" id="wvo-nT-bpi"/>
                             </constraints>
                         </stackView>
@@ -237,7 +259,7 @@
                             <rect key="frame" x="367.66666666666674" y="0.0" width="362.33333333333326" height="372"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tda-vE-dAl">
-                                    <rect key="frame" x="0.0" y="37.666666666666629" width="20" height="334.33333333333337"/>
+                                    <rect key="frame" x="0.0" y="37.666666666666657" width="20" height="334.33333333333337"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-tC-7KD">
                                             <rect key="frame" x="0.0" y="0.0" width="20" height="33.333333333333336"/>
@@ -370,7 +392,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35J-Y6-FYO">
-                                    <rect key="frame" x="28" y="37.666666666666629" width="334.33333333333331" height="334.33333333333337"/>
+                                    <rect key="frame" x="28" y="37.666666666666657" width="334.33333333333331" height="334.33333333333337"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="j3A-TP-Lxl">
                                             <rect key="frame" x="0.0" y="0.0" width="334.33333333333331" height="334.33333333333331"/>
@@ -416,6 +438,7 @@
                 <constraint firstItem="3lL-am-dT7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="2" id="zVO-Hi-Gj0"/>
             </constraints>
             <connections>
+                <outlet property="backButton" destination="kuX-0U-jIN" id="gnm-Fn-cbo"/>
                 <outlet property="clearButton" destination="c4c-sU-X28" id="KP8-Qq-s7l"/>
                 <outlet property="playButton" destination="Gcm-YM-VE5" id="MKz-W4-bWf"/>
                 <outlet property="polygonView" destination="35J-Y6-FYO" id="MFZ-Bv-Z7Y"/>
@@ -429,6 +452,7 @@
         <image name="2 палуби" width="202" height="102"/>
         <image name="3 палуби" width="302" height="102"/>
         <image name="4 палуби" width="402" height="102"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <namedColor name="AppBlack">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -439,10 +463,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemCyanColor">
-            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

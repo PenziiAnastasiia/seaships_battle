@@ -11,6 +11,7 @@ class EditShipsView: UIView {
 
     @IBOutlet var clearButton: UIButton!
     @IBOutlet var playButton: UIButton!
+    @IBOutlet var backButton: UIButton!
     
     @IBOutlet var polygonView: UIView!
     @IBOutlet var stackView: UIStackView!
