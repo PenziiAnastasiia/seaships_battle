@@ -19,19 +19,29 @@ class GameView: UIView {
     
     @IBOutlet var enemyPolygonView: UIView!
     @IBOutlet var enemyStackView: UIStackView!
+    
+    @IBOutlet var timerView: UIView!
+    @IBOutlet var timerLabel: UILabel!
+    
+    private var timer: Timer?
+    private var seconds = 60
+    
+    private var isOnlineGame = false
+    private var timerComplete: ((Polygon) -> ())?
 
     private var action: ((CellModel) -> Void)?
     private var stack: Polygon = .my
     
-    public func configure() -> (Bool) -> Void {
+    public func configure(isOnlineGame: Bool, timerHandler: @escaping (Polygon) -> ()) -> (Bool) -> Void {
+        self.isOnlineGame = isOnlineGame
+        self.timerComplete = timerHandler
+
         [self.myPolygonView, self.enemyPolygonView].forEach { view in
             view.layer.borderWidth = 1
-            view.layer.borderColor = UIColor(named: "AppBlack")?.cgColor
+            view.layer.borderColor = UIColor.appBlack.cgColor
         }
         
-        return { [weak self] value in
-            self?.enemyStackView.isUserInteractionEnabled = value
-        }
+        return self.myTurn(value:)
     }
     
     public func fill(stack: Polygon, models: [[CellModel]], action: ((CellModel) -> Void)? = nil) {
@@ -43,6 +53,15 @@ class GameView: UIView {
             self.action = action
             self.fill(stack: self.enemyStackView, with: models)
         }
+    }
+    
+    //MARK:
+    //MARK: - Private
+    
+    private func myTurn(value: Bool) {
+        self.enemyStackView.isUserInteractionEnabled = value
+        self.stopTimer()
+        if self.isOnlineGame { self.startTimer(isMyTurn: value) }
     }
     
     private func fill(stack: UIStackView, with models: [[CellModel]]) {
@@ -77,5 +96,34 @@ class GameView: UIView {
             
             return cell
         }
+    }
+    
+    private func startTimer(isMyTurn: Bool) {
+        self.seconds = isMyTurn ? 60 : 65
+        let timeInterval = isMyTurn ? 1.0 : Double(self.seconds)
+        self.timerView.isHidden = !isMyTurn
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: isMyTurn, block: { [weak self] _ in
+            isMyTurn ? self?.updateLabel() : self?.timerComplete?(.enemy)
+        })
+    }
+    
+    private func updateLabel() {
+        self.seconds -= 1
+        let secondsRemaining = self.seconds % 60
+        self.timerLabel.text = String(format: "%02d:%02d", self.seconds / 60, secondsRemaining)
+        self.timerLabel.textColor = secondsRemaining > 5 ? .black: .red
+        
+        if self.seconds == 0 {
+            self.stopTimer()
+            self.timerComplete?(.my)
+        }
+    }
+    
+    private func stopTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+        self.timerView.isHidden = true
+        self.timerLabel.text = "01:00"
     }
 }

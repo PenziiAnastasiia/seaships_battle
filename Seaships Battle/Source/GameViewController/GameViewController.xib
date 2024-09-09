@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -410,13 +410,34 @@
                         </view>
                     </subviews>
                 </stackView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-H4-DTw">
+                    <rect key="frame" x="396" y="351.66666666666669" width="60" height="20.333333333333314"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzS-zu-QSX">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="20.333333333333332"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="fzS-zu-QSX" secondAttribute="trailing" id="9BL-F2-7hX"/>
+                        <constraint firstItem="fzS-zu-QSX" firstAttribute="leading" secondItem="BBz-H4-DTw" secondAttribute="leading" id="DHR-07-qnD"/>
+                        <constraint firstItem="fzS-zu-QSX" firstAttribute="top" secondItem="BBz-H4-DTw" secondAttribute="top" id="J7T-Fb-9yp"/>
+                        <constraint firstAttribute="bottom" secondItem="fzS-zu-QSX" secondAttribute="bottom" id="jUH-G7-tDY"/>
+                        <constraint firstAttribute="width" constant="60" id="wYN-91-6kw"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="OkS-lM-6jI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6a6-Gy-JuR"/>
                 <constraint firstItem="OkS-lM-6jI" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="894-0b-C5o"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BBz-H4-DTw" secondAttribute="bottom" id="XGy-1Y-Rxm"/>
                 <constraint firstItem="OkS-lM-6jI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ifx-pa-Qnx"/>
+                <constraint firstItem="BBz-H4-DTw" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="nav-1b-tcW"/>
                 <constraint firstItem="qRT-uw-D66" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="1:2.2" id="oa3-2t-jem"/>
                 <constraint firstItem="wZe-5X-Iwl" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="1:2.2" id="rAb-BW-IbY"/>
                 <constraint firstItem="OkS-lM-6jI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="taP-aY-qQi"/>
@@ -426,6 +447,8 @@
                 <outlet property="enemyStackView" destination="Jcw-Od-X1f" id="ril-UJ-jJn"/>
                 <outlet property="myPolygonView" destination="3qC-hu-mZB" id="fWe-KR-j2x"/>
                 <outlet property="myStackView" destination="nHF-CT-gxy" id="zq5-98-VKi"/>
+                <outlet property="timerLabel" destination="fzS-zu-QSX" id="uih-mH-Wy5"/>
+                <outlet property="timerView" destination="BBz-H4-DTw" id="8UU-vZ-Mhv"/>
             </connections>
             <point key="canvasLocation" x="87.323943661971839" y="17.557251908396946"/>
         </view>

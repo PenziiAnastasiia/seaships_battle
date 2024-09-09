@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0147BB2C7DF11A0056A19E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 1B0147BA2C7DF11A0056A19E /* FirebaseDatabase */; };
+		1B0147BD2C84B69C0056A19E /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0147BC2C84B69C0056A19E /* Codable+Extension.swift */; };
 		1B36D3742C773C7100BD78E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B36D3732C773C7000BD78E9 /* GoogleService-Info.plist */; };
 		1B36D3772C773D0F00BD78E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1B36D3762C773D0F00BD78E9 /* FirebaseAnalytics */; };
 		1B36D37A2C77476B00BD78E9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1B36D3792C77476B00BD78E9 /* FirebaseAuth */; };
 		1B36D37D2C7749E500BD78E9 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B36D37C2C7749E500BD78E9 /* SignInViewController.xib */; };
 		1B36D37F2C774A1100BD78E9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B36D37E2C774A1100BD78E9 /* SignInViewController.swift */; };
+		1B570E502C8A49690098D872 /* GameProcessModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B570E4F2C8A49690098D872 /* GameProcessModels.swift */; };
+		1B570E522C8DD0F10098D872 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B570E512C8DD0F00098D872 /* UIView+Extensions.swift */; };
 		1B5FEBE12B264A1C00BBB1C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBD82B264A1C00BBB1C3 /* Assets.xcassets */; };
 		1B5FEBE22B264A1C00BBB1C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5FEBD92B264A1C00BBB1C3 /* LaunchScreen.storyboard */; };
 		1B5FEBE32B264A1C00BBB1C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5FEBDB2B264A1C00BBB1C3 /* AppDelegate.swift */; };
@@ -40,9 +44,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B0147BC2C84B69C0056A19E /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		1B36D3732C773C7000BD78E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B36D37C2C7749E500BD78E9 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		1B36D37E2C774A1100BD78E9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		1B570E4F2C8A49690098D872 /* GameProcessModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProcessModels.swift; sourceTree = "<group>"; };
+		1B570E512C8DD0F00098D872 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		1B5FEBC02B26497E00BBB1C3 /* Seaships Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Seaships Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5FEBD82B264A1C00BBB1C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B5FEBDA2B264A1C00BBB1C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B0147BB2C7DF11A0056A19E /* FirebaseDatabase in Frameworks */,
 				1B36D3772C773D0F00BD78E9 /* FirebaseAnalytics in Frameworks */,
 				1B36D37A2C77476B00BD78E9 /* FirebaseAuth in Frameworks */,
 			);
@@ -99,6 +107,14 @@
 				1B36D37E2C774A1100BD78E9 /* SignInViewController.swift */,
 			);
 			path = SignViewController;
+			sourceTree = "<group>";
+		};
+		1B570E4E2C8A49310098D872 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B570E4F2C8A49690098D872 /* GameProcessModels.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1B5FEBB72B26497E00BBB1C3 = {
@@ -135,6 +151,7 @@
 		1B5FEBDD2B264A1C00BBB1C3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				1B570E4E2C8A49310098D872 /* Models */,
 				1B69DBA22C7B30FB00BC99AA /* Services */,
 				1B7A91432B278E5C004C2EA5 /* Libs */,
 				1B5FEBEC2B266F2C00BBB1C3 /* GameViewController */,
@@ -202,7 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				1B7A91452B278E5C004C2EA5 /* Optional+Extension.swift */,
+				1B570E512C8DD0F00098D872 /* UIView+Extensions.swift */,
 				1B7A91462B278E5C004C2EA5 /* Alert+Extension.swift */,
+				1B0147BC2C84B69C0056A19E /* Codable+Extension.swift */,
 				1B7A91482B278E5C004C2EA5 /* IndexPath+Extension.swift */,
 				1B7A91492B278E5C004C2EA5 /* Array+Extension.swift */,
 			);
@@ -228,6 +247,7 @@
 			packageProductDependencies = (
 				1B36D3762C773D0F00BD78E9 /* FirebaseAnalytics */,
 				1B36D3792C77476B00BD78E9 /* FirebaseAuth */,
+				1B0147BA2C7DF11A0056A19E /* FirebaseDatabase */,
 			);
 			productName = "Seaships Battle";
 			productReference = 1B5FEBC02B26497E00BBB1C3 /* Seaships Battle.app */;
@@ -294,9 +314,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B570E522C8DD0F10098D872 /* UIView+Extensions.swift in Sources */,
 				1B5FEBEF2B266F5600BBB1C3 /* GameViewController.swift in Sources */,
 				1B7A91422B278DFE004C2EA5 /* BoardGenerator.swift in Sources */,
 				1B5FEBEA2B264D2200BBB1C3 /* EditShipsViewController.swift in Sources */,
+				1B0147BD2C84B69C0056A19E /* Codable+Extension.swift in Sources */,
 				1B36D37F2C774A1100BD78E9 /* SignInViewController.swift in Sources */,
 				1B7A913B2B278A6C004C2EA5 /* PolygonCell.swift in Sources */,
 				1B9CC77C2B2A370900BF90B3 /* GameView.swift in Sources */,
@@ -312,6 +334,7 @@
 				1B7A914E2B278E5C004C2EA5 /* IndexPath+Extension.swift in Sources */,
 				1B5FEBE62B264A1C00BBB1C3 /* MainViewController.swift in Sources */,
 				1B7A914C2B278E5C004C2EA5 /* Alert+Extension.swift in Sources */,
+				1B570E502C8A49690098D872 /* GameProcessModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +568,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1B0147BA2C7DF11A0056A19E /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B36D3752C773D0F00BD78E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
 		1B36D3762C773D0F00BD78E9 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1B36D3752C773D0F00BD78E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

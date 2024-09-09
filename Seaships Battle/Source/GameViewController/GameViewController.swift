@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 struct SelectModelResult {
     let safeZone: [IndexPath]
@@ -28,11 +30,27 @@ class GameViewController: UIViewController {
     private var possiblePoints: [IndexPath] = []
     private var partialShip: [IndexPath] = []
     
-    private var disableUserIteraction: ((Bool) -> Void)?
+    private var enableUserIteraction: ((Bool) -> Void)?
     
-    init(myShips: [[IndexPath]], enemyShips: [[IndexPath]]) {
+    private var currentUser: User
+    private var isMyTurn: Bool
+    private var gameRoomRef: DatabaseReference?
+    private var gameModel: GameModel?
+    private var observer: UInt?
+    private let isOnlineGame: Bool
+    
+    deinit {
+        debugPrint("deinit:", String(describing: type(of: self)))
+    }
+    
+    init(myShips: [[IndexPath]], enemyShips: [[IndexPath]], currentUser: User, isMyTurn: Bool,
+         gameRoomRef: DatabaseReference?) {
         self.myShipsArray = myShips
         self.enemyShipsArray = enemyShips
+        self.currentUser = currentUser
+        self.isMyTurn = isMyTurn
+        self.gameRoomRef = gameRoomRef
+        self.isOnlineGame = gameRoomRef != nil
         super.init(nibName: "GameViewController", bundle: nil)
     }
     
@@ -57,7 +75,9 @@ class GameViewController: UIViewController {
     }
     
     private func configure() {
-        self.disableUserIteraction = self.rootView?.configure()
+        self.enableUserIteraction = self.rootView?.configure(isOnlineGame: self.isOnlineGame) { [weak self] polygon in
+            self?.completeGame(with: polygon)
+        }
         
         self.myCellModels = self.generateItems()
         self.enemyCellModels = self.generateItems()
@@ -70,6 +90,17 @@ class GameViewController: UIViewController {
         
         self.fillMyShips()
         self.fillEnemyShips()
+        
+        if let gameRef = self.gameRoomRef {
+            gameRef.observeSingleEvent(of:.value, with: { [weak self] snapshot in
+                if let game: GameModel = (snapshot.value as? [String : Any])?.toModel() {
+                    self?.gameModel = game
+                }
+            })
+        }
+        
+        self.enableUserIteraction?(self.isMyTurn)
+        self.observeOfGameUpdates()
     }
     
     public func generateItems() -> [[CellModel]] {
@@ -82,6 +113,14 @@ class GameViewController: UIViewController {
     
     private func selectModel(at indexPath: IndexPath) {
         guard self.enemyCellModels[indexPath.section][indexPath.item].type == .empty else { return }
+        
+        let moveModel = LastMoveModel(id: self.currentUser.uid, move: IndexPathModel(indexPath: indexPath))
+        if let game = self.gameModel, let roomRef = self.gameRoomRef {
+            let newGameModel = game.update(lastMove: moveModel)
+            if let dictionary = newGameModel.dictionary {
+                roomRef.updateChildValues(dictionary)
+            }
+        }
         let model = self.selectModel(
             at: indexPath,
             shipsArray: self.enemyShipsArray,
@@ -92,9 +131,15 @@ class GameViewController: UIViewController {
             self.enemyCellModels[point.section][point.item].type = .miss
         }
         self.fillEnemyShips()
-        if !self.checkEnemyShips(), !model.shot {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-                self?.enemyActions()
+        if !self.checkEnemyShips() {
+            if self.isOnlineGame {
+                self.enableUserIteraction?(model.shot)
+            } else {
+                if !model.shot {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                        self?.enemyActions()
+                    }
+                }
             }
         }
     }
@@ -139,7 +184,7 @@ class GameViewController: UIViewController {
     }
     
     private func enemyActions() {
-        self.disableUserIteraction?(false)
+        self.enableUserIteraction?(false)
         var somePoint: IndexPath?
         if self.possiblePoints.isEmpty {
             somePoint = self.enemyBoard.randomElement()
@@ -174,7 +219,7 @@ class GameViewController: UIViewController {
                     self?.enemyActions()
                 }
             } else {
-                self.disableUserIteraction?(true)
+                self.enableUserIteraction?(true)
             }
         }
     }
@@ -199,12 +244,29 @@ class GameViewController: UIViewController {
         }
     }
     
+    private func observeOfGameUpdates() {
+        self.observer = self.gameRoomRef?.observe(.value, with: { [weak self] snapshot in
+            self?.onlineEnemyMoves(with: snapshot)
+        })
+    }
+    
+    private func onlineEnemyMoves(with snapshot: DataSnapshot) {
+        if let game: GameModel = (snapshot.value as? [String : Any])?.toModel(),
+           let lastMove = game.lastMove, lastMove.id != self.currentUser.uid {
+            let lastMoveIndexPath = IndexPath(item: lastMove.move.item, section: lastMove.move.section)
+            let model = self.selectModel(at: lastMoveIndexPath, shipsArray: self.myShipsArray,
+                                         cellModels: &self.myCellModels, shipsDictionary: &self.myShipsDictionary)
+            self.fillMyShips()
+            if !self.checkMyShips() {
+                self.enableUserIteraction?(!model.shot)
+            }
+        }
+    }
+    
     private func checkMyShips() -> Bool {
         let ships = self.myShipsDictionary.compactMap { $1 }
         if self.check(ships: ships) {
-            UIAlertController.showAlert(title: "На жаль!", message: "Ви програли!", on: self) { [weak self] in
-                self?.backToStartFlow()
-            }
+            self.completeGame(with: .my)
             
             return true
         }
@@ -215,14 +277,26 @@ class GameViewController: UIViewController {
     private func checkEnemyShips() -> Bool {
         let ships = self.enemyShipsDictionary.compactMap { $1 }
         if self.check(ships: ships) {
-            UIAlertController.showAlert(title: "Вітаннячка!", message: "Ви перемогли!", on: self) { [weak self] in
-                self?.backToStartFlow()
-            }
+            self.completeGame(with: .enemy)
             
             return true
         }
         
         return false
+    }
+    
+    private func completeGame(with polygon: Polygon) {
+        UIAlertController.showAlert(
+            title: polygon == .enemy ? "Вітаннячка!" : "На жаль!",
+            message: polygon == .enemy ? "Ви перемогли!" : "Ви програли!",
+            on: self
+        ) { [weak self] in
+            if let handler = self?.observer, let gameRef = self?.gameRoomRef {
+                gameRef.removeObserver(withHandle: handler)
+                gameRef.removeValue()
+            }
+            self?.backToStartFlow()
+        }
     }
     
     private func check(ships: [[IndexPath]]) -> Bool {

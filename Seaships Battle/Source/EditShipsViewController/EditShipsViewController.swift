@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class EditShipsViewController: UIViewController {
     
@@ -19,6 +21,28 @@ class EditShipsViewController: UIViewController {
     private var lockedPoints: [IndexPath] = []
     private var mySelectPoints: [IndexPath] = []
     
+    private var currentUser: User
+    private var gameRooms: DatabaseReference {
+        let databaseURL = "https://seashipbattle-default-rtdb.europe-west1.firebasedatabase.app"
+        return Database.database(url: databaseURL).reference()
+    }
+    
+    private var observer: UInt?
+    private var gameID: String?
+    
+    deinit {
+        debugPrint("deinit:", String(describing: type(of: self)))
+    }
+    
+    init(currentUser: User) {
+        self.currentUser = currentUser
+        super.init(nibName: "EditShipsViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +53,7 @@ class EditShipsViewController: UIViewController {
     @IBAction func pressBack(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)
     }
-
+    
     @IBAction func pressClear(_ sender: UIButton) {
         self.lockedPoints = []
         self.mySelectPoints = []
@@ -37,26 +61,38 @@ class EditShipsViewController: UIViewController {
         self.generateItems()
         self.fillView()
     }
-
+    
     @IBAction func pressPlay(_ sender: UIButton) {
         let myShips = self.createMyShips()
+        
         if self.check(ships: myShips) {
             let alert = UIAlertController(title: "З ким хочете зіграти?", message: nil, preferredStyle: .alert)
             
-            let playAgainstComputerAction = UIAlertAction(title: "Проти Комп'ютера", style: .default) { _ in
-                let enemyShips = self.shipsBuilder.createShips()
-                let controller = GameViewController(myShips: myShips, enemyShips: enemyShips)
-                self.navigationController?.pushViewController(controller, animated: true)
+            let playWithComputerAction = UIAlertAction(title: "З комп'ютером оффлайн", style: .default) { [weak self] _ in
+                self?.playOfflineGame(myShips: myShips)
             }
             
-            let playOnlineAction = UIAlertAction(title: "Проти Людини Онлайн", style: .default)
+            let playOnlineAction = UIAlertAction(title: "З користувачами онлайн", style: .default) { [weak self] _ in
+                self?.playOnlineGame(myShips: myShips)
+            }
             
-            alert.addAction(playAgainstComputerAction)
+            let playOnlineWithFriendAction = UIAlertAction(title: "З другом", style: .default)
+            
+            alert.addAction(playWithComputerAction)
             alert.addAction(playOnlineAction)
+            alert.addAction(playOnlineWithFriendAction)
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
+    @IBAction func waitGameCompletion(_ sender: UIButton) {
+        if let handler = self.observer, let gameID = self.gameID {
+            let room = self.gameRooms.child(gameID)
+            room.removeObserver(withHandle: handler)
+            room.removeValue()
+        }
+    }
+    
     //MARK:
     //MARK: - Private
     
@@ -185,7 +221,7 @@ class EditShipsViewController: UIViewController {
         
         return true
     }
-                               
+    
     private func didSelectModel(at indexPath: IndexPath) -> CellModel.CellType {
         var model = self.cellModels[indexPath.section][indexPath.item]
         if model.type == .empty {
@@ -277,32 +313,99 @@ class EditShipsViewController: UIViewController {
         
     }
     
-    //MARK:
-    //MARK: - NSCollectionViewDataSource
+    private func convertToIndexPathModels(ships: [[IndexPath]]) -> [[IndexPathModel]] {
+        return ships.compactMap { array in
+            array.compactMap { indexPath in
+                IndexPathModel(indexPath: indexPath)
+            }
+        }
+    }
     
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return self.cellModels.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return self.cellModels[section].count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let model = self.cellModels[indexPath.section][indexPath.item]
-//        let item = collectionView.dequeueReusableCell(withReuseIdentifier: "PolygonCell", for: indexPath) as! PolygonCell
-//        item.fill(with: model)
-//        
-//        return item
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if !self.lockedPoints.contains(where: { $0.section == indexPath.section && $0.item == indexPath.item }) {
-//            self.selectModel(at: indexPath)
-//            collectionView.reloadData()
-//        }
-//    }
+    private func convertToIndexPath(ships: [[IndexPathModel]]) -> [[IndexPath]] {
+        return ships.compactMap { array in
+            array.compactMap { indexPathModel in
+                IndexPath(item: indexPathModel.item, section: indexPathModel.section)
+            }
+        }
+    }
     
+    private func playOfflineGame(myShips: [[IndexPath]]) {
+        let enemyShips = self.shipsBuilder.createShips()
+        let controller = GameViewController(myShips: myShips, enemyShips: enemyShips, currentUser: self.currentUser,
+                                            isMyTurn: true, gameRoomRef: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
     
+    private func playOnlineGame(myShips: [[IndexPath]]) {
+        let existsWaitingRooms = self.gameRooms.queryOrdered(byChild: "isWaitingRoom").queryEqual(toValue: true)
+        
+        existsWaitingRooms.observeSingleEvent(of: .value) { [weak self] snapshot in
+            self?.joinToGame(with: snapshot, myShips: myShips)
+        }
+    }
     
+    private func joinToGame(with snapshot: DataSnapshot, myShips: [[IndexPath]]) {
+        self.rootView?.waitGameView.isHidden = false
+        if snapshot.exists(), let games = snapshot.value as? [String: Any] {
+            if let (gameRef, gameModel) = self.joinGameSession(existsGames: games, userShips: myShips) {
+                self.rootView?.waitGameView.isHidden = true
+                self.goToGameViewController(gameRoomRef: gameRef, gameModel: gameModel, userShips: myShips, userTurn: false)
+            }
+        } else {
+            let gameID = self.createGameSession(userShips: myShips)
+            let gameRef = self.gameRooms.child(gameID)
+            self.gameID = gameID
+            
+            self.observer = gameRef.observe(.value, with: { [weak self] snapshot in
+                if let game: GameModel = (snapshot.value as? [String : Any])?.toModel(), !game.isWaitingRoom {
+                    if let handler = self?.observer {
+                        gameRef.removeObserver(withHandle: handler)
+                    }
+                    self?.rootView?.waitGameView.isHidden = true
+                    self?.goToGameViewController(gameRoomRef: gameRef, gameModel: game, userShips: myShips, userTurn: true)
+                }
+            })
+        }
+    }
+    
+    private func joinGameSession(existsGames: [String : Any], userShips: [[IndexPath]]) -> (DatabaseReference, GameModel)? {
+        let ships = self.convertToIndexPathModels(ships: userShips)
+        
+        if let game: GameModel = (existsGames.first?.value as? [String : Any])?.toModel() {
+            let gameID = existsGames.first!.key as String
+            let gameRef = self.gameRooms.child(gameID)
+            let newGame = game.modify(with: PlayerModel(id: self.currentUser.uid, ships: ships))
+            if let dictionary = newGame.dictionary {
+                gameRef.updateChildValues(dictionary)
+            }
+            return (gameRef, newGame)
+        }
+        return nil
+    }
+    
+    private func createGameSession(userShips: [[IndexPath]]) -> String {
+        let ships = self.convertToIndexPathModels(ships: userShips)
+        let gameID = UUID().uuidString
+        let player: PlayerModel = PlayerModel(id: self.currentUser.uid, ships: ships)
+        let game = GameModel(isWaitingRoom: true, players: [player], lastMove: nil)
+        if let dictionary = game.dictionary {
+            self.gameRooms.child(gameID).updateChildValues(dictionary)
+        }
+        return gameID
+    }
+    
+    private func goToGameViewController(gameRoomRef: DatabaseReference, gameModel: GameModel,
+                                        userShips: [[IndexPath]], userTurn: Bool) {
+        let enemyShips = gameModel.players
+            .first { model in
+                return model.id != self.currentUser.uid
+            }
+            .flatMap { model in
+                return self.convertToIndexPath(ships: model.ships)
+            } ?? [[]]
+        
+        let controller = GameViewController(myShips: userShips, enemyShips: enemyShips, currentUser: self.currentUser,
+                                            isMyTurn: userTurn, gameRoomRef: gameRoomRef)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }

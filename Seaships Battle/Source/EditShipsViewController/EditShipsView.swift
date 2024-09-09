@@ -15,7 +15,10 @@ class EditShipsView: UIView {
     
     @IBOutlet var polygonView: UIView!
     @IBOutlet var stackView: UIStackView!
-
+    
+    @IBOutlet var waitGameView: UIView!
+    @IBOutlet var waitGameContentView: UIView!
+    
     private var action: ((CellModel) -> Void)?
     
     override func awakeFromNib() {
@@ -24,7 +27,8 @@ class EditShipsView: UIView {
         self.polygonView.layer.borderWidth = 1
         self.polygonView.layer.borderColor = UIColor(named: "AppBlack")?.cgColor
         self.clearButton?.layer.cornerRadius = 10
-        self.playButton?.layer.cornerRadius = 15
+        self.playButton?.layer.cornerRadius = 16
+        self.waitGameContentView?.layer.cornerRadius = 16
     }
     
     public func fill(with models: [[CellModel]], action: @escaping (CellModel) -> Void) {
